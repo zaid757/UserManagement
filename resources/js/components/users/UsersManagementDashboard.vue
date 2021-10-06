@@ -43,6 +43,7 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>User Since</th>
@@ -51,6 +52,9 @@
                     </thead>
                     <tbody v-if="results !== null">
                         <tr v-for="user in results.data" v-bind:key="user.data">
+                            <td>
+                                <img :src="'/images/' + user.image" />
+                            </td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.user_since }}</td>

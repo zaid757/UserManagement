@@ -26,7 +26,7 @@
                     </ul>
                 </div>
 
-                <form action="#">
+                <form @submit="formSubmit" enctype="multipart/form-data">
                     <div class="form-group row">
                         <label for="" class="col-3">Name</label>
                         <div class="col-9">
@@ -82,7 +82,18 @@
                         </div>
                     </div>
 
-                    <button class="btn btn-primary" @click.prevent="storeUser">
+                    <div class="class form-group row">
+                        <label for="" class="col-3">Upload Picture </label>
+                        <div class="col-9">
+                            <input
+                                type="file"
+                                class="form-control"
+                                v-on:change="onChange"
+                            />
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary">
                         Create User
                     </button>
                 </form>
@@ -97,6 +108,7 @@ export default {
         return {
             data: {
                 name: "",
+                image: "",
                 email: "",
                 role: "user",
                 password: "",
@@ -106,16 +118,30 @@ export default {
         };
     },
     methods: {
-        storeUser: function() {
+        onChange(e) {
+            this.image = e.target.files[0];
+        },
+        formSubmit(e) {
+            e.preventDefault();
+            let existingObj = this;
+
+            const config = {
+                headers: {
+                    "content-type": "multipart/form-data"
+                }
+            };
+
+            let data = new FormData();
+            data.append("image", this.image);
+            data.append("role", this.data.role);
+            data.append("name", this.data.name);
+            data.append("email", this.data.email);
+            data.append("password", this.data.password);
+            data.append("confirm_password", this.data.confirm_password);
+
             this.errors = [];
             axios
-                .post("/data/users", {
-                    name: this.data.name,
-                    email: this.data.email,
-                    role: this.data.role,
-                    password: this.data.password,
-                    confirm_password: this.data.confirm_password
-                })
+                .post("/data/users", data)
                 .then(response =>
                     this.$emit(
                         "created-user",
