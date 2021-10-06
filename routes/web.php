@@ -30,3 +30,7 @@ Route::prefix('accounts')->namespace('Accounts')->name('accounts.')->middleware(
 });
 
 Route::prefix('data')->namespace('Data')->middleware(['web', 'auth'])->group(base_path('routes/web/data.php'));
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
