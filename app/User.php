@@ -62,6 +62,10 @@ class User extends Authenticatable
 
 
 
+public function getProfileBaseAttribute() {
+    return base64_encode(Storage::get($this->image)); //whatever field u saved
+}
+
 
 
 }

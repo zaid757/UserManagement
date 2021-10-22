@@ -44412,7 +44412,7 @@ var render = function() {
                           return _c("tr", { key: user.data }, [
                             _c("td", [
                               _c("img", {
-                                attrs: { src: "/images/" + user.image }
+                                attrs: { src: "images" + user.image }
                               })
                             ]),
                             _vm._v(" "),

@@ -53,7 +53,7 @@
                     <tbody v-if="results !== null">
                         <tr v-for="user in results.data" v-bind:key="user.data">
                             <td>
-                                <img :src="'/images/' + user.image" />
+                                <img :src="`images${user.image}`" />
                             </td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
