@@ -124,13 +124,11 @@ export default {
         formSubmit(e) {
             e.preventDefault();
             let existingObj = this;
-
             const config = {
                 headers: {
                     "content-type": "multipart/form-data"
                 }
             };
-
             let data = new FormData();
             data.append("image", this.image);
             data.append("role", this.data.role);
@@ -138,7 +136,6 @@ export default {
             data.append("email", this.data.email);
             data.append("password", this.data.password);
             data.append("confirm_password", this.data.confirm_password);
-
             this.errors = [];
             axios
                 .post("/data/users", data)
