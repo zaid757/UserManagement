@@ -17,9 +17,7 @@ class UsersTableSeeder extends Seeder
             'name' => 'azqq banting',
             'email' => 'azqq@gmail.com',
             'role' => 'admin',
-            'password' => Hash::make('12345678'),
-            'image' => 'null',
-            'thumbnail' => 'null',
+            'password' => Hash::make('Password123')
 
         ]);
     }

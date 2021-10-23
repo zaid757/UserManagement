@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Data\Users;
 
 
-
 use App\User;
 use Image;
 use File;
@@ -44,11 +43,11 @@ class UsersController extends Controller
 
 
 
-         $domain = new User();
-         $domain->name = $request['name'];
-         $domain->role = $request['role'];
-         $domain->email = $request['email'];
-         $domain->password = $request['password'];
+         $user = new User();
+         $user->name = $request['name'];
+         $user->role = $request['role'];
+         $user->email = $request['email'];
+         $user->password = $request['password'];
 
 
         $image = request()->file('image');
@@ -60,13 +59,13 @@ class UsersController extends Controller
             $extension = $image->getClientOriginalExtension();
             $name = time() .'_'. $image->getClientOriginalName();
             Storage::disk('public')->put($name, File::get($image));
-            $domain->image =$name;
+            $user->image =$name;
         } else {
-            $domain->image = 'default.jpg';
+            $user->image = 'default.jpg';
         }
-        $domain->save();
+        $user->save();
 
-        return response()->json(['domain' => $domain]);
+        return response()->json(['user' => $user]);
     }
 
     public function update(UpdateUserRequest $request, User $user)
