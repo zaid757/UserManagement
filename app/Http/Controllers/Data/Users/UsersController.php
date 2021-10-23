@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Data\Users;
 
 use App\User;
+use Image;
+use File;
+use Storage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +34,37 @@ class UsersController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-        $user = User::create($request->only('name', 'role', 'email') + ['password' => Hash::make($request->password)]);
+        $request->validate([
+            'email' => 'required|email',
+        'name' => 'required|max:255',
+         'role' => 'required|max:255',
+         'image' => 'required|mimes:jpeg,bmp,png,jpg',]) + ['password' => Hash::make($request->password)];
 
-        return response()->json(['user' => $user]);
+
+
+         $domain = new User();
+         $domain->name = $request['name'];
+         $domain->role = $request['role'];
+         $domain->email = $request['email'];
+         $domain->password = $request['password'];
+
+
+        $image = request()->file('image');
+        $imageName = $image->getClientOriginalName();
+        $imageName = time().'_'.$imageName;
+
+        if ($request['image']) {
+            $image = $request['image'];
+            $extension = $image->getClientOriginalExtension();
+            $name = time() .'_'. $image->getClientOriginalName();
+            Storage::disk('public')->put($name, File::get($image));
+            $domain->image =$name;
+        } else {
+            $domain->image = 'default.jpg';
+        }
+        $domain->save();
+
+        return response()->json(['domain' => $domain]);
     }
 
     public function update(UpdateUserRequest $request, User $user)
