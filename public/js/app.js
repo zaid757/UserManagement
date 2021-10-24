@@ -57502,10 +57502,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
-String.prototype.ucFirst = function () {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
 /***/ }),
 
 /***/ "./resources/js/components/accounts/UpdateEmail.vue":
