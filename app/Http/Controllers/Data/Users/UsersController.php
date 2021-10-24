@@ -56,9 +56,10 @@ class UsersController extends Controller
 
         if ($request['image']) {
             $image = $request['image'];
+
             $extension = $image->getClientOriginalExtension();
             $name = time() .'_'. $image->getClientOriginalName();
-            Storage::disk('public')->put($name, File::get($image));
+            \Image::make($request->image)->save(public_path('img/public/').$name);
             $user->image =$name;
         } else {
             $user->image = 'default.jpg';

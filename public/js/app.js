@@ -7358,6 +7358,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -44412,7 +44416,10 @@ var render = function() {
                           return _c("tr", { key: user.data }, [
                             _c("td", [
                               _c("img", {
-                                attrs: { src: "images" + user.image }
+                                staticClass:
+                                  "profile-user-img img-fluid img-circle",
+                                staticStyle: { height: "40px", width: "40px" },
+                                attrs: { src: "img/public/" + user.image }
                               })
                             ]),
                             _vm._v(" "),
