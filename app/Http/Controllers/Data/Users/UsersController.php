@@ -39,7 +39,7 @@ class UsersController extends Controller
             'email' => 'required|email',
         'name' => 'required|max:255',
          'role' => 'required|max:255',
-         'image' => 'required|mimes:jpeg,bmp,png,jpg',]) + ['password' => Hash::make($request->password)];
+         'image' => 'required|mimes:jpeg,bmp,png,jpg',]);
 
 
 
@@ -47,7 +47,7 @@ class UsersController extends Controller
          $user->name = $request['name'];
          $user->role = $request['role'];
          $user->email = $request['email'];
-         $user->password = $request['password'];
+         $user->password = Hash::make($request['password']);
 
 
         $image = request()->file('image');
@@ -57,9 +57,9 @@ class UsersController extends Controller
         if ($request['image']) {
             $image = $request['image'];
 
-            $extension = $image->getClientOriginalExtension();
+
             $name = time() .'_'. $image->getClientOriginalName();
-            \Image::make($request->image)->save(public_path('img/public/').$name);
+            \Image::make($request->image)->save(public_path('storage/').$name);
             $user->image =$name;
         } else {
             $user->image = 'default.jpg';

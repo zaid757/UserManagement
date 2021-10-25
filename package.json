@@ -27,6 +27,6 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.1",
         "update-notifier": "^5.1.0",
-        "webpack": "^4.44.2"
+        "webpack": "^4.46.0"
     }
 }

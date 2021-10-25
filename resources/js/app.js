@@ -24,6 +24,7 @@ window.Vue = require('vue');
 Vue.component('users-management-dashboard', require('./components/users/UsersManagementDashboard.vue').default);
 Vue.component('user-account-settings', require('./components/accounts/UserAccountSettings.vue').default);
 Vue.component('user-display', require('./components/users/userdisplay.vue').default);
+Vue.component('user-register', require('./components/users/registeruser.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

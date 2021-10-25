@@ -80,8 +80,15 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="">
+                    <div class="card">
+                        <div class="card-body">
+                   <h1> User management : Powered by laravel and vue
+                    use admin role   username : azqq@gmail.com
+                                    password: Password123
+                                </h1>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="links">

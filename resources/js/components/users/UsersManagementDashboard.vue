@@ -54,7 +54,7 @@
                         <tr v-for="user in results.data" v-bind:key="user.data">
                             <td>
                                 <img
-                                    :src="`img/public/${user.image}`"
+                                    :src="`storage/${user.image}`"
                                     class="profile-user-img img-fluid img-circle"
                                     style="height:40px; width:40px;"
                                 />
